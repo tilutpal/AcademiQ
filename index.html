@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcademiQ — Academic Result & Grade Verification Portal</title>
+  <meta name="description" content="Instant academic result and semester grade verification portal. Search by student registration number to view authenticated grades, SGPA, and CGPA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient background glow (Refined Emerald & Titanium) -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom-right" aria-hidden="true"></div>
+
+  <!-- Main Container -->
+  <div class="app-wrapper">
+    
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <a href="#" class="brand-logo" aria-label="AcademiQ Home">
+          <div class="logo-icon-wrapper">
+            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Academi<span class="brand-highlight">Q</span></span>
+            <span class="brand-tagline">Academic Performance & Grade Verification</span>
+          </div>
+        </a>
+
+        <div class="header-actions">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme (T)">
+            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Hero Intro -->
+      <section class="hero-section">
+        <div class="hero-badge">
+          <svg class="sparkle-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0l2.8 9.2L24 12l-9.2 2.8L12 24l-2.8-9.2L0 12l9.2-2.8z"/>
+          </svg>
+          <span>Official Grade Verification</span>
+        </div>
+        <h1 class="hero-title">Academic Result Portal</h1>
+        <p class="hero-subtitle">Enter your student registration number and select semester to view authenticated course grades, semester SGPA, and cumulative CGPA.</p>
+      </section>
+
+      <!-- Search Card Form -->
+      <section class="search-card-wrapper">
+        <div class="search-card" id="search-card">
+          <form id="result-search-form" class="search-form" autocomplete="off">
+            
+            <div class="form-grid">
+              <!-- Section 1: Registration ID Field -->
+              <div class="input-section registration-section">
+                <label for="regn-input" class="field-label">
+                  <span class="label-text">Registration Number</span>
+                </label>
+                
+                <div class="input-field-container">
+                  <div class="input-icon-prefix" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+                      <circle cx="9" cy="10" r="2"></circle>
+                      <line x1="15" y1="8" x2="17" y2="8"></line>
+                      <line x1="15" y1="12" x2="17" y2="12"></line>
+                      <line x1="7" y1="16" x2="17" y2="16"></line>
+                    </svg>
+                  </div>
+                  
+                  <input 
+                    type="text" 
+                    id="regn-input" 
+                    name="regn_no" 
+                    class="form-input text-input" 
+                    placeholder="Enter 7-digit Registration ID"
+                    maxlength="15"
+                    required
+                    autofocus
+                    spellcheck="false"
+                  >
+
+                  <button type="button" id="clear-input-btn" class="clear-btn" aria-label="Clear registration number" title="Clear input" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Section 2: Semester Dropdown Field -->
+              <div class="input-section semester-section">
+                <label for="semester-select" class="field-label">
+                  <span class="label-text">Select Semester</span>
+                </label>
+
+                <div class="input-field-container">
+                  <div class="input-icon-prefix" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                  </div>
+
+                  <select id="semester-select" name="semester" class="form-input select-input" required>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6" selected>Semester 6</option>
+                    <option value="7" disabled>Semester 7 (Upcoming)</option>
+                    <option value="8" disabled>Semester 8 (Upcoming)</option>
+                  </select>
+
+                  <div class="select-chevron-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button Area -->
+            <div class="form-actions">
+              <button type="submit" id="search-submit-btn" class="search-submit-btn">
+                <span class="btn-spinner" hidden></span>
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span class="btn-text">View Academic Results</span>
+                <span class="btn-shortcut">↵ Enter</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Input error / message container -->
+          <div id="form-feedback" class="form-feedback" hidden>
+            <svg class="feedback-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span id="feedback-message"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Portal Highlights -->
+      <section class="portal-features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="feature-details">
+            <h3 class="feature-title">Verified Records</h3>
+            <p class="feature-desc">920+ student grade cards synchronized directly from official examination records across all engineering departments.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+          </div>
+          <div class="feature-details">
+            <h3 class="feature-title">SGPA &amp; CGPA Analytics</h3>
+            <p class="feature-desc">Accurate per-semester SGPA and cumulative CGPA tracking with dynamic branch course swapping.</p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+          </div>
+          <div class="feature-details">
+            <h3 class="feature-title">Multi-Semester View</h3>
+            <p class="feature-desc">Switch seamlessly between semesters to inspect course codes, credits, and grade history.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p class="footer-text">AcademiQ Result Portal &copy; 2024. Examination &amp; Academic Records Division.</p>
+        <div class="footer-links">
+          <span class="badge-mini">Academic Year 2023–2024</span>
+          <span class="badge-mini">Semesters 1 &amp; 2 Verified</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- RESULT POPUP MODAL (DIALOG) -->
+  <!-- ========================================================================= -->
+  <dialog id="result-modal" class="modal-dialog" aria-labelledby="modal-student-id">
+    <div class="modal-card" id="grade-sheet-card">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <div class="modal-badge-group">
+            <span class="modal-dept-badge" id="modal-dept-badge">Civil Engineering</span>
+            <span class="modal-batch-badge" id="modal-batch-badge">Batch 2023</span>
+            <span class="modal-sem-badge" id="modal-sem-badge">Semester 2</span>
+          </div>
+          <div class="modal-title-row">
+            <h2 class="modal-student-id" id="modal-student-id">2311018</h2>
+            <div id="modal-status-badge" class="status-badge status-passed">PASSED</div>
+          </div>
+        </div>
+
+        <button type="button" id="close-modal-btn" class="modal-close-btn" aria-label="Close result dialog" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Interactive Semester Switcher Tabs -->
+      <div class="semester-tabs-container" id="modal-semester-tabs">
+        <!-- Semester tab buttons dynamically generated by app.js -->
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        
+        <!-- Metrics Dashboard Row (SGPA, CGPA only) -->
+        <div class="metrics-grid metrics-grid-2col">
+          
+          <!-- Semester SGPA Metric Card -->
+          <div class="metric-card metric-sgpa">
+            <div class="metric-header">
+              <span class="metric-label" id="modal-sgpa-label">Semester 2 SGPA</span>
+              <span class="metric-scale">Scale 10.0</span>
+            </div>
+            <div class="metric-value-container">
+              <span class="metric-value" id="modal-sgpa-val">8.44</span>
+              <span class="metric-unit">/ 10</span>
+            </div>
+            <div class="metric-progress-track">
+              <div class="metric-progress-fill" id="modal-sgpa-bar" style="width: 84.4%"></div>
+            </div>
+          </div>
+
+          <!-- Cumulative CGPA Card -->
+          <div class="metric-card metric-cgpa">
+            <div class="metric-header">
+              <span class="metric-label">Cumulative CGPA</span>
+              <svg class="metric-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </div>
+            <div class="metric-value-container">
+              <span class="metric-value" id="modal-cgpa-val">8.33</span>
+              <span class="metric-unit">/ 10</span>
+            </div>
+            <div class="metric-progress-track">
+              <div class="metric-progress-fill metric-cgpa-fill" id="modal-cgpa-bar" style="width: 83.3%"></div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- Grade Breakdown Table Section (Course Code, Credits, Grade Point, Letter Grade) -->
+        <div class="table-section-wrapper">
+          <div class="section-heading-row">
+            <h3 class="table-section-title">Course Performance Breakdown</h3>
+            <span class="table-count-badge" id="modal-course-count">9 Courses</span>
+          </div>
+
+          <div class="results-table-container">
+            <table class="results-table" id="results-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="th-code">Course Code</th>
+                  <th scope="col" class="th-credits text-center">Credits</th>
+                  <th scope="col" class="th-gp text-center">Grade Point</th>
+                  <th scope="col" class="th-grade text-center">Letter Grade</th>
+                </tr>
+              </thead>
+              <tbody id="results-table-body">
+                <!-- Dynamically populated rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <div class="footer-note">
+          <span>* Official examination record verified by Academic Affairs.</span>
+        </div>
+        <button type="button" id="modal-done-btn" class="modal-action-btn primary-btn">
+          <span>Done</span>
+        </button>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- Toast Notification -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Load Results Data and Application Logic -->
+  <script src="data/results_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
